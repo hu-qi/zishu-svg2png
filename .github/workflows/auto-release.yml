@@ -26,26 +26,28 @@ jobs:
     - name: Generate certificates
       run: npm run start
       
-    - name: Get repo name
-      id: get_repo_name
+    - name: Get repo name and check folder
       run: |
-        echo "Current directory: $(pwd)"
-        echo "List.txt path: $(pwd)/list.txt"
-        echo "List.txt contents:"
-        cat $(pwd)/list.txt
-        REPO_NAME=$(grep 'github_repo_name' $(pwd)/list.txt | awk -F': ' '/github_repo_name/{print $2}')
-        echo "Extracted REPO_NAME: ${REPO_NAME}"
-        echo "REPO_NAME=${REPO_NAME}" >> $GITHUB_OUTPUT
-        echo "Current directory contents:"
-        ls -la
-       
-    - name: Check if folder exists
-      run: |
-        if [ ! -d "${REPO_NAME}" ]; then
-          echo "::error::Folder ${REPO_NAME} does not exist!"
+        # 获取 REPO_NAME
+        REPO_NAME=$(grep 'github_repo_name' list.txt | awk -F': ' '/github_repo_name/{print $2}')
+        
+        # 检查是否获取到 REPO_NAME
+        if [ -z "${REPO_NAME}" ]; then
+          echo "::error::Failed to get REPO_NAME from list.txt!"
           exit 1
         fi
-      
+
+        # 检查目录是否存在
+        if [ ! -d "${REPO_NAME}" ]; then
+          echo "::error::Folder ${REPO_NAME} does not exist!"
+          echo "Current directory contents:"
+          ls -la
+          exit 1
+        fi
+
+        echo "REPO_NAME: ${REPO_NAME}"
+        echo "Folder ${REPO_NAME} exists, proceeding with zip..."
+
     - name: Zip folder
       run: |
         zip -r "${REPO_NAME}.zip" "${REPO_NAME}"
