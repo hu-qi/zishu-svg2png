@@ -33,7 +33,7 @@ jobs:
         echo "List.txt path: $(pwd)/list.txt"
         echo "List.txt contents:"
         cat $(pwd)/list.txt
-        REPO_NAME=$(grep 'github_repo_name' $(pwd)/list.txt | awk -F': ' '{print $2}')
+        REPO_NAME=$(grep 'github_repo_name' $(pwd)/list.txt | awk -F': ' '/github_repo_name/{print $2}')
         echo "Extracted REPO_NAME: ${REPO_NAME}"
         echo "REPO_NAME=${REPO_NAME}" >> $GITHUB_OUTPUT
         echo "Current directory contents:"
