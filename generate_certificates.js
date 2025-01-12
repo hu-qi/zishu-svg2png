@@ -43,6 +43,14 @@ async function generateCertificates() {
         mode: 'width',
         value: 1200,
       },
+      font: {
+        // 添加中文字体支持
+        fontFiles: [
+          './fonts/HarmonyOS_Sans_SC_Regular.ttf', // 添加鸿蒙中文字体
+          './fonts/AlibabaPuHuiTi-2-55-Regular.ttf', // 添加阿里巴巴普惠体
+        ],
+        loadSystemFonts: false, // 禁用系统字体加载
+      }
     });
     const pngData = resvg.render();
     fs.writeFileSync(pngPath, pngData.asPng());
