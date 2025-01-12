@@ -25,7 +25,7 @@ async function generateCertificates() {
     let certContent = template
       .replace('{{name}}', member.name)
       .replace('{{description}}', member.description)
-      .replace('{{title}}', member.title)
+      .replace('{{title}}', data.reason)
       .replace('{{cert_id}}', String(i + 1).padStart(4, '0'))
       .replace('{{award_name}}', data.award_name)
       .replace('{{from}}', data.from)

@@ -1,3 +1,13 @@
+# 项目信息
+# project_name: wow-rag组队学习
+# award_name: 助人之星
+# from: wow-rag团队颁发
+# team_name: wow-rag团队
+# github_repo_name: wow-rag
+# github_url: https://github.com/datawhalechina/wow-rag
+# reason: 在\"wow-rag组队学习\"活动中表现优异
+
+# 获奖成员列表
 单子豪，虽然非科班出身，但是积极探索，补充了wow-rag的linux启动方式。
 行不止，积极主动回答同学们的问题，乐于助人。
 匆匆，积极分享rag前沿技术，干货满满。
