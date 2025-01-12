@@ -26,18 +26,19 @@ jobs:
     - name: Generate certificates
       run: npm run start
       
-    - name: Get repo name and check folder
+    - name: Get repo name
+      id: get_repo_name
       run: |
-        # 获取 REPO_NAME
         REPO_NAME=$(grep 'github_repo_name' list.txt | awk -F': ' '/github_repo_name/{print $2}')
-        
-        # 检查是否获取到 REPO_NAME
         if [ -z "${REPO_NAME}" ]; then
           echo "::error::Failed to get REPO_NAME from list.txt!"
           exit 1
         fi
+        echo "REPO_NAME=${REPO_NAME}" >> $GITHUB_OUTPUT
 
-        # 检查目录是否存在
+    - name: Check if folder exists
+      run: |
+        REPO_NAME=${{ steps.get_repo_name.outputs.REPO_NAME }}
         if [ ! -d "${REPO_NAME}" ]; then
           echo "::error::Folder ${REPO_NAME} does not exist!"
           echo "Current directory contents:"
@@ -45,22 +46,31 @@ jobs:
           exit 1
         fi
 
-        echo "REPO_NAME: ${REPO_NAME}"
-        echo "Folder ${REPO_NAME} exists, proceeding with zip..."
-
     - name: Zip folder
       run: |
+        REPO_NAME=${{ steps.get_repo_name.outputs.REPO_NAME }}
         zip -r "${REPO_NAME}.zip" "${REPO_NAME}"
-      
+
     - name: Create Release
-      uses: softprops/action-gh-release@v1
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        files: "${REPO_NAME}.zip"
-        generate_release_notes: true
-      
-    - name: Debug list.txt
-      run: |
-        echo "list.txt content:"
-        cat list.txt
-        echo "Extracted REPO_NAME:"
-        grep 'github_repo_name' list.txt | awk -F': ' '{print $2}'
+        tag_name: ${{ github.run_id }}
+        release_name: Release ${{ github.run_id }}
+        body: |
+          Auto-generated release for ${{ steps.get_repo_name.outputs.REPO_NAME }}
+        draft: false
+        prerelease: false
+
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ${{ steps.get_repo_name.outputs.REPO_NAME }}.zip
+        asset_name: ${{ steps.get_repo_name.outputs.REPO_NAME }}.zip
+        asset_content_type: application/zip
+  
