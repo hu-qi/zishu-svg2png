@@ -5,9 +5,17 @@ on:
     paths:
       - 'svg/**'
 
+permissions:
+  contents: write  # 允许创建发布和上传文件
+
+
 jobs:
   release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+      actions: read
     
     steps:
     - uses: actions/checkout@v3
@@ -33,10 +41,16 @@ jobs:
         
     - name: Zip results
       run: |
-        zip -r "${{ steps.get_dir_name.outputs.DIR_NAME }}.zip" "results/svg/${{ steps.get_dir_name.outputs.DIR_NAME }}"
+        zip -r "${{ steps.get_dir_name.outputs.DIR_NAME || 'dist' }}.zip" "results/svg/${{ steps.get_dir_name.outputs.DIR_NAME }}"
+
         
     - name: Create Release
       uses: softprops/action-gh-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        files: "${{ steps.get_dir_name.outputs.DIR_NAME }}.zip"
-        generate_release_notes: true
+        tag_name: svg2png-task-${{ github.run_id }}
+        files: "${{ steps.get_dir_name.outputs.DIR_NAME || 'dist' }}.zip"
+        draft: false
+        prerelease: false
+
