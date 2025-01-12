@@ -1,0 +1,42 @@
+name: SVG Directory Release
+
+on:
+  push:
+    paths:
+      - 'svg/**'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        
+    - name: Install dependencies
+      run: npm install
+      
+    - name: Get new directory name
+      id: get_dir_name
+      run: |
+        # Get the latest added directory in svg folder
+        DIR_NAME=$(git diff --name-only --diff-filter=A HEAD^ HEAD | grep '^svg/' | cut -d'/' -f2 | uniq)
+        echo "DIR_NAME=${DIR_NAME}" >> $GITHUB_OUTPUT
+        
+    - name: Process new directory
+      run: |
+        node index.js "svg/${{ steps.get_dir_name.outputs.DIR_NAME }}"
+        
+    - name: Zip results
+      run: |
+        zip -r "${{ steps.get_dir_name.outputs.DIR_NAME }}.zip" "results/svg/${{ steps.get_dir_name.outputs.DIR_NAME }}"
+        
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: "${{ steps.get_dir_name.outputs.DIR_NAME }}.zip"
+        generate_release_notes: true

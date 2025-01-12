@@ -1,0 +1,43 @@
+name: Auto Release on List Update
+
+on:
+  push:
+    paths:
+      - 'list.txt'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        
+    - name: Install dependencies
+      run: npm install
+      
+    - name: Convert list.txt to data.json
+      run: npm run text2json
+      
+    - name: Generate certificates
+      run: npm run start
+      
+    - name: Get repo name
+      id: get_repo_name
+      run: |
+        REPO_NAME=$(grep 'github_repo_name' list.txt | awk -F': ' '{print $2}')
+        echo "REPO_NAME=${REPO_NAME}" >> $GITHUB_OUTPUT
+       
+    - name: Zip folder
+      run: |
+        zip -r "${REPO_NAME}.zip" "${REPO_NAME}"
+      
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: "${REPO_NAME}.zip"
+        generate_release_notes: true
