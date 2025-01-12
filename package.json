@@ -1,0 +1,15 @@
+{
+  "name": "prompt2svg2png",
+  "version": "1.0.0",
+  "description": "根据 prompt 生成 svg，根据 template.svg 及 data.json 批量生成 png，主要用于个性化奖状生成",
+  "main": "generate_certificates.js",
+  "scripts": {
+    "start": "node generate_certificates.js",
+    "transform": "node transform_list_to_json.js"
+  },
+  "author": "hu-qi",
+  "license": "MulanPSL2",
+  "dependencies": {
+    "@resvg/resvg-js": "^2.6.2"
+  }
+}

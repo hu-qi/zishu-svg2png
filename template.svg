@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <!-- 背景 -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0e6fa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e6d4f4;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- 祥云图案 -->
+    <pattern id="cloudPattern" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+      <path d="M30,100 C60,70 120,70 150,100 C180,130 120,130 90,100" fill="none" stroke="#6b2c91" stroke-width="1" opacity="0.2"/>
+    </pattern>
+  </defs>
+
+  <!-- 主背景 -->
+  <rect width="800" height="600" fill="url(#bgGradient)"/>
+  <rect width="800" height="600" fill="url(#cloudPattern)"/>
+  
+  <!-- 边框 -->
+  <rect x="30" y="30" width="740" height="540" fill="none" 
+        stroke="#6b2c91" stroke-width="2" rx="10"/>
+  
+  <!-- 内边框 -->
+  <rect x="50" y="50" width="700" height="500" fill="none" 
+        stroke="#6b2c91" stroke-width="1" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="150" fill="#3b2f5c" 
+        font-family="华文行楷, STXingkai" font-size="60" 
+        text-anchor="middle">{{award_name}}</text>
+
+  <!-- 证书内容 -->
+  <text x="400" y="250" fill="#3b2f5c" 
+        font-family="楷体, KaiTi" font-size="24" 
+        text-anchor="middle">兹授予</text>
+  <!--  姓名 -->
+  <text x="400" y="300" fill="#3b2f5c" 
+        font-family="楷体, KaiTi" font-size="36" 
+        text-anchor="middle">{{name}}</text>
+  <!-- 项目名称 -->
+  <text x="400" y="350" fill="#3b2f5c" 
+        font-family="楷体, KaiTi" font-size="24" 
+        text-anchor="middle">{{title}}</text>
+  <text x="400" y="390" fill="#3b2f5c" 
+        font-family="楷体, KaiTi" font-size="24" 
+        text-anchor="middle">{{description}}</text>
+
+  <!-- 证书编号 -->
+  <text x="100" y="500" fill="#3b2f5c" 
+        font-family="楷体, KaiTi" font-size="16">证书编号：{{cert_id}}</text>
+
+  <!-- 落款 -->
+  <text x="600" y="500" fill="#3b2f5c" 
+        font-family="楷体, KaiTi" font-size="16" 
+        text-anchor="middle">{{from}}</text>
+
+  <!-- 开源地址 -->
+  <text x="400" y="540" fill="#6b2c91" 
+        font-family="楷体, KaiTi" font-size="12" 
+        text-anchor="middle">{{github_url}}</text>
+
+  <!-- 装饰元素：梅兰竹菊 -->
+  <g transform="translate(100,100)" opacity="0.2">
+    <!-- 梅花 -->
+    <path d="M0,0 Q5,-5 10,0 Q15,-5 20,0" stroke="#6b2c91" fill="none"/>
+    <path d="M10,-10 Q10,-5 10,0 Q10,5 10,10" stroke="#6b2c91" fill="none"/>
+  </g>
+  <g transform="translate(670,100)" opacity="0.2">
+    <!-- 兰花 -->
+    <path d="M0,0 C10,-10 20,-10 30,0" stroke="#6b2c91" fill="none"/>
+    <path d="M15,-5 C15,0 15,5 15,10" stroke="#6b2c91" fill="none"/>
+  </g>
+
+  <!-- 改进的印章 - 放在落款上 -->
+  <g transform="translate(600,500)">
+    <!-- 印章主体 -->
+    <circle cx="0" cy="0" r="45" fill="#6b2c91" opacity="0.2"/>
+    
+    <!-- 内圈 -->
+    <circle cx="0" cy="0" r="35" fill="none" stroke="#6b2c91" opacity="0.3"/>
+    
+    <!-- 环形文字路径 -->
+    <defs>
+      <path id="sealTextPath" 
+            d="M0,-30 A30,30 0 1,1 -0.01,-30 A30,30 0 1,1 0,-30"
+            fill="none"/>
+    </defs>
+    
+    <!-- 环形文字 -->
+    <text fill="#6b2c91" font-size="12" letter-spacing="4">
+      <textPath href="#sealTextPath" textLength="188">
+          {{team_name}}
+      </textPath>
+    </text>
+    
+    <!-- 中心五角星 -->
+    <path d="M0,-15 L8.78,11.91 L-14.27,-4.63 L14.27,-4.63 L-8.78,11.91 Z" 
+          fill="#6b2c91" opacity="0.4"/>
+          
+    <!-- 内圈装饰线 -->
+    <circle cx="0" cy="0" r="20" fill="none" stroke="#6b2c91" opacity="0.3" stroke-dasharray="2,2"/>
+  </g>
+</svg>

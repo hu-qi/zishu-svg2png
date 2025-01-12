@@ -1,0 +1,60 @@
+{
+    "project_name": "wow-rag组队学习",
+    "award_name": "助人之星",
+    "from": "wow-rag团队颁发",
+    "team_name": "wow-rag团队",
+    "github_repo_name": "wow-rag",
+    "github_url": "https://github.com/datawhalechina/wow-rag",
+    "award_members": [
+        {
+            "name": "单子豪",
+            "title": "在\"wow-rag组队学习\"活动中表现优异",
+            "description": "虽然非科班出身，但是积极探索，补充了wow-rag的linux启动方式"
+        },
+        {
+            "name": "行不止", 
+            "title": "在\"wow-rag组队学习\"活动中表现优异",
+            "description": "积极主动回答同学们的问题，乐于助人"
+        },
+        {
+            "name": "匆匆",
+            "title": "在\"wow-rag组队学习\"活动中表现优异",
+            "description": "积极分享rag前沿技术，干货满满"
+        },
+        {
+            "name": "守中",
+            "title": "在\"wow-rag组队学习\"活动中表现优异",
+            "description": "积极提问，显示出很高的学习热情"
+        },
+        {
+            "name": "丁真",
+            "title": "在\"wow-rag组队学习\"活动中表现优异",
+            "description": "虽然非科班出身，工作与编程无关，但是积极探索，学习热情很高"
+        },
+        {
+            "name": "二方土君",
+            "title": "在\"wow-rag组队学习\"活动中表现优异",
+            "description": "积极为大家分享跑通经验"
+        },
+        {
+            "name": "周焕",
+            "title": "在\"wow-rag组队学习\"活动中表现优异",
+            "description": "积极运营本次wow-rag学习活动，记录同学们的提问"
+        },
+        {
+            "name": "邢硕",
+            "title": "在\"wow-rag组队学习\"活动中表现优异",
+            "description": "积极运营本次wow-rag学习活动，记录同学们的提问"
+        },
+        {
+            "name": "胡琦",
+            "title": "在\"wow-rag组队学习\"活动中表现优异",
+            "description": "参与教程的改进，积极答疑，为同学们提供开箱即用的api_key"
+        },
+        {
+            "name": "宏辉",
+            "title": "在\"wow-rag组队学习\"活动中表现优异",
+            "description": "积极答疑，为同学们提供免费的API后端服务"
+        }
+    ]
+}
