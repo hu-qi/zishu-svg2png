@@ -5,9 +5,16 @@ on:
     paths:
       - 'list.txt'
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+      actions: read
     
     steps:
     - uses: actions/checkout@v3
