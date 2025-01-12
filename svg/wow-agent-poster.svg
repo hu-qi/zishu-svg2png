@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  <!--  defs  -->
+  <defs>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e6f3ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:1" />
+    </linearGradient>
+    <!-- Title text gradient -->
+    <linearGradient id="text-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1a365d;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2c5282;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- 调整背景矩形 -->
+  <rect width="800" height="450" fill="url(#bg-gradient)" />
+
+  <!-- 调整装饰圆 -->
+  <circle cx="400" cy="225" r="100" fill="none" stroke="#4299e1" stroke-width="2" opacity="0.1" />
+  <circle cx="400" cy="225" r="150" fill="none" stroke="#4299e1" stroke-width="1.5" opacity="0.07" />
+  
+  <!-- 调整抽象图形 -->
+  <path d="M400 180 L480 225 L400 270 L320 225 Z" 
+        fill="none" 
+        stroke="#2b6cb0" 
+        stroke-width="3"
+        opacity="0.8" />
+  <circle cx="400" cy="210" r="20" fill="#2b6cb0" opacity="0.8" />
+
+  <!-- 调整标题位置 -->
+  <text x="400" y="340" 
+        font-family="Arial Black, sans-serif" 
+        font-size="48" 
+        text-anchor="middle" 
+        fill="url(#text-gradient)"
+        font-weight="bold">
+    WOW-AGENT
+  </text>
+
+  <!-- 调整副标题 -->
+  <text x="400" y="380" 
+        font-family="Microsoft YaHei, sans-serif" 
+        font-size="20" 
+        text-anchor="middle" 
+        fill="#4a5568">
+    极轻量的本地Agent搭建
+  </text>
+
+  <!-- 调整装饰线 -->
+  <line x1="200" y1="400" x2="600" y2="400" 
+        stroke="#e2e8f0" 
+        stroke-width="1" />
+</svg>

@@ -12,6 +12,10 @@ prompt 生成 svg 请参考: [借助 Claude 生成”助人之星“证书SVG](h
 npm i
 npm run transform
 npm run start
+# 可选: Usage: node index.js <file.svg or directory>
+node index.js wow-agent-poster.svg
+# or
+node index.js svg
 ```
 
 - Python 环境
@@ -20,6 +24,10 @@ npm run start
 pip install -r requirements.txt
 python transform_list_to_json.py
 python generate_certificates.py
+# 可选: Usage: python generate_certificates.py <file.svg or directory>
+python generate_certificates.py wow-agent-poster.svg
+# or
+python generate_certificates.py svg 
 ```
 
 ## 说明

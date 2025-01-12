@@ -5,7 +5,9 @@
   "main": "generate_certificates.js",
   "scripts": {
     "start": "node generate_certificates.js",
-    "transform": "node transform_list_to_json.js"
+    "start-py": "python generate_certificates.py",
+    "text2json": "node transform_list_to_json.js",
+    "text2json-py": "python transform_list_to_json.py"
   },
   "author": "hu-qi",
   "license": "MulanPSL2",
