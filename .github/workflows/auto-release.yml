@@ -31,7 +31,16 @@ jobs:
       run: |
         REPO_NAME=$(grep 'github_repo_name' list.txt | awk -F': ' '{print $2}')
         echo "REPO_NAME=${REPO_NAME}" >> $GITHUB_OUTPUT
+        echo "Current directory contents:"
+        ls -la
        
+    - name: Check if folder exists
+      run: |
+        if [ ! -d "${REPO_NAME}" ]; then
+          echo "::error::Folder ${REPO_NAME} does not exist!"
+          exit 1
+        fi
+      
     - name: Zip folder
       run: |
         zip -r "${REPO_NAME}.zip" "${REPO_NAME}"
@@ -41,3 +50,10 @@ jobs:
       with:
         files: "${REPO_NAME}.zip"
         generate_release_notes: true
+      
+    - name: Debug list.txt
+      run: |
+        echo "list.txt content:"
+        cat list.txt
+        echo "Extracted REPO_NAME:"
+        grep 'github_repo_name' list.txt | awk -F': ' '{print $2}'
