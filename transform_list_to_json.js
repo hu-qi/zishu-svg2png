@@ -6,11 +6,13 @@ function transformListToJson() {
     
     // Parse each line
     const awardMembers = listData.split('\n').map(line => {
-        const [name, description] = line.split('，');
+        const firstCommaIndex = line.indexOf('，');
+        const name = line.slice(0, firstCommaIndex).trim();
+        const description = line.slice(firstCommaIndex + 1).trim();
         return {
-            name: name.trim(),
+            name: name,
             title: '在"wow-rag组队学习"活动中表现优异',
-            description: description.trim()
+            description: description
         };
     }).filter(member => member.name); // Remove empty lines
     
